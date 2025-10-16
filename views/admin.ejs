@@ -1,0 +1,52 @@
+<div class="row mt-4">
+  <div class="col-md-10 m-auto">
+    <h1 class="mb-4">Admin Dashboard</h1>
+    <p class="lead">Welcome, <%=user.name %>(Admin)</p>
+
+    <div class="card">
+      <div class="card-header">
+        <h3>Active Sessions</h3>
+      </div>
+
+      <div class="card-body">
+        <% if (sessions.length === 0 ) { %>
+        <p>No active sessions found.</p>
+        <%} else { %>
+        <table class="table">
+          <thead>
+            <tr>
+              <th>Session Id</th>
+              <th>User Id</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% sessions.forEach(session => { %>
+            <tr>
+              <td><%= session.sessionId.substring(0,10) %>...</td>
+              <td><%= session.userId || 'Not logged in' %></td>
+              <td>
+                <form
+                  action="/admin/revoke/<%= session.sessionId %>"
+                  method="POST"
+                  style="display: inline"
+                >
+                  <button type="submit" class="btn btn-danger btn-sm">
+                    Revoke Session
+                  </button>
+                </form>
+              </td>
+            </tr>
+            <% }); %>
+          </tbody>
+        </table>
+        <% } %>
+      </div>
+    </div>
+
+    <div class="mt-3">
+      <a href="/dashboard" class="btn btn-secondary">Back to Dashboard</a>
+      <a href="/auth/logout" class="btn btn-warning">Logout</a>
+    </div>
+  </div>
+</div>

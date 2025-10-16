@@ -41,7 +41,7 @@ const userModel = {
     if (user) {
       return user;
     }
-    throw new Error(`Couldn't find user with email: ${email}`);
+    throw new Error(`Couldn't find user with email: '${email}'`);
   },
   /* FIX ME (types) 😭 */
   findById: (id: number): User | undefined => {
@@ -49,7 +49,7 @@ const userModel = {
     if (user) {
       return user;
     }
-    throw new Error(`Couldn't find user with id: ${id}`);
+    throw new Error(`Couldn't find user with id: '${id}'`);
   },
 
   findByGithubId: (githubId: string): User | undefined => {
